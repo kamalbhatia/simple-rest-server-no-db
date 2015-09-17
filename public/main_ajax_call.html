@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>First Form Request to server</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <form method="post" action="/users">
+  First Name: <input type="text" name="firstname">
+  <br />
+  Last Name: <input type="text" name="lastname">
+  <br />
+  <input type="button" name="print" value="print">
+  </form>
+  
+  <script>
+      var printData = function(e){
+		  e.preventDefault();
+		  var inputs = $("input");
+		  $.ajax({url:"/users", type:'post', data: {firstname: inputs[0].value, lastname: inputs[1].value},
+						success: function(response, status){
+							console.log(response, status);
+							var newDiv = $('<div></div>');
+							newDiv.append("<br><p>First Name: " + response.firstname + "<br>Last Name: " + response.lastname);
+							newDiv.insertAfter(button);
+						 }
+		  });
+		  //.done(function(response, status){
+			//  console.log(response,status);
+		  //});
+	  };
+	  var button = $(":button");
+	  console.log(button);
+	  button.on('click',printData);
+  </script>
+  
+</body>
+</html>

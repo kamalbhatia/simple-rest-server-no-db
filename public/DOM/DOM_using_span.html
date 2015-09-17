@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>DOM Exercise 1</title>
+   <link rel="stylesheet" type="text/css" href="./DOM_Exercise.css">
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+   <div id="outerBox">
+     <div id="div1">
+      <ul id="checkList">
+         <li>
+           <input type="checkbox" id="check1" name="Fruit" value="Apple"/>
+           <span>Apple</span>
+           </li>
+           
+           <li>
+           <input type="checkbox" id="check2" name="Fruit" value="Mango"/>
+           <span>Mango</span>
+           </li>
+           
+           <li>
+           <input type="checkbox" id="check3" name="Fruit" value="Grapes"/>
+           <span>Grapes</span>
+           </li>
+           
+           <li>
+           <input type="checkbox" id="check4" name="Fruit" value="Strawberry"/>
+           <span>Strawberry</span>
+           </li>
+           
+           <li>
+           <input type="checkbox" id="check5" name="Fruit" value="Cherry"/>
+           <span>Cherry</span>
+           </li>
+      </ul>
+      </div>
+      
+      <div id="div2">
+      <ul id="displayList">
+    
+       </ul>
+      </div>
+      <br />
+      <button id="buttonAdd" onclick="promptForFruit()">Add New Fruit</button>
+    </div>
+    <script src="./DOM_span_jquery.js"></script>
+</body>
+</html>
+

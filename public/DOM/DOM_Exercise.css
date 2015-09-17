@@ -1,0 +1,47 @@
+@charset "UTF-8";
+/* CSS Document */
+
+div#div1{
+border: 1px solid black;
+display: inline;
+float: left;	
+height: 320px;
+width: 300px;
+overflow: auto;
+}
+
+div#div2{
+border: 1px solid black;
+display: inline;
+float: left;	
+border-left-width: 0px;
+height: 320px;
+width: 300px;
+}
+
+ul {
+list-style-type: none;
+align-items: left;
+}
+
+div#outerBox {
+   display: inline;
+   position: absolute;
+   top: 40px;
+   left: 400px;
+   height: 325px;
+   width: 605px;
+}
+
+#div1 ul li {
+padding: 10px 50px 30px 0px;	
+}
+
+#div2 ul li {
+padding: 10px 50px 30px 0px;		
+}
+
+input[type=checkbox]:checked + span {
+  
+  font-style: normal;
+}
