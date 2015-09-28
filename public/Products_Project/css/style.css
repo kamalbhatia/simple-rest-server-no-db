@@ -1,0 +1,13 @@
+.largeIcon{
+   size: 50px;
+   padding-left: 35px;
+   padding-right: 35px;
+}
+
+a:hover{
+   text-decoration: none;
+}
+
+#mainWellsDiv{
+ height: auto;   
+}
