@@ -15,7 +15,7 @@ $(document).ready(function(e) {
          var divTwoInNewDiv =$('<div class="col-md-3"></div>');
          newDiv.append(divOneInNewDiv);
          newDiv.append(divTwoInNewDiv);
-         divOneInNewDiv.append("<h2> " + val.itemName + "</h2><br><p>" +                                 val.itemDescription + "</p><br>");
+         divOneInNewDiv.append("<h2> " + val.itemName + "</h2><br><p>" + val.itemDescription + "</p><br>");
          divTwoInNewDiv.append('<form class="form-inline"><br><br><button type="button" class="btn btn-default btn-primary col-sm-8 fixedWidth">$' + val.itemPrice + '</button> &nbsp; <button id="' + val.id + '"type="button" class="btn btn-default delete-btn" aria-label="Delete Item">'+'<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></form>');
          mainWellsDiv.append(newDiv);
      });//end of each
@@ -52,7 +52,7 @@ $(document).ready(function(e) {
                 itemPrice: "required"
              }
         });*/
-          function validateF(){
+          /*function validateF(){
               var inputs = itemForm.find('input');
               if(inputs[0].attr(name) == "notValid" ){
                   switch(notValid){
@@ -63,7 +63,7 @@ $(document).ready(function(e) {
                   console.log("Please enter Name");
               }
           }
-          validateF();
+          validateF();*/
         
         var inputs = itemForm.find('input');
         console.log(inputs);
@@ -89,7 +89,7 @@ $(document).ready(function(e) {
                         var divTwoInNewDiv =$('<div class="col-md-3"></div>');
                         newDiv.append(divOneInNewDiv);
                         newDiv.append(divTwoInNewDiv);
-				        divOneInNewDiv.append("<h2> " + response.itemName + "</h2><br><p>" +                                 response.itemDescription + "</p><br>");
+				        divOneInNewDiv.append("<h2> " + response.itemName + "</h2><br><p>" + response.itemDescription + "</p><br>");
                         
                         divTwoInNewDiv.append('<form class="form-inline"><br><br><button type="button" class="btn btn-default btn-primary col-sm-8 fixedWidth">$' + response.itemPrice + '</button> &nbsp; <button id="'+ response.id
                      + '" type="button" class="btn btn-default delete-btn" aria-label="Delete Item">'+

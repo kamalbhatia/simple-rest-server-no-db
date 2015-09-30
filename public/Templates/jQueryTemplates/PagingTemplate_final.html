@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Template Paging Example</title>
+        <link rel="stylesheet" href="../css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">    </script>
+        <script type="text/javascript" src="../js/jquery.loadTemplate-1.5.0.js"></script>
+        <script> 
+        var curPage = 1;
+         var templateData = null;
+
+         function getData() {
+            $.getJSON("templateData.json", function(data) {
+                templateData = data;
+                renderTemplates(templateData, curPage);
+            });
+         }         
+
+         function renderTemplates(data, pageNo) {
+            $("#container").loadTemplate($("#itemTemplate"), data["employees"], 
+                    {paged: true, pageNo: pageNo, elemPerPage: 1});
+         }
+
+         window.addEventListener("load", function(e) {
+             $.addTemplateFormatter("EmailLink", function(value, options) {
+                 return "mailto:" + value;
+             });
+             
+             document.querySelector("#prevPage").addEventListener("click", function (evt) {
+                 if (curPage > 1) {
+                    renderTemplates(templateData, --curPage);
+                 }
+             });
+             document.querySelector("#nextPage").addEventListener("click", function (evt) {
+                 if (curPage < 4) {
+                    renderTemplates(templateData, ++curPage);
+                 }
+             });
+
+             getData();
+         });
+        </script>
+    </head>
+    <body>
+        <script type="text/html" id="itemTemplate">
+            <div class="itemTemplateWrapper">
+                <div data-content="name"></div>
+                <div data-content="title"></div>
+                <div data-content="email" data-link="email" data-format="EmailLink" data-format-target="link"></div>
+                <div data-content="phone"></div>
+            </div>
+        </script>
+        <h1>Using jQuery Template Data Paging</h1>
+        <h3>This example uses the Paging and Binding Attributes features</h3>
+
+        <!-- This is the container where the templates will be instantiated -->
+        <div id="container"></div>
+
+        <button id="prevPage">Previous</button>
+        <button id="nextPage">Next</button>
+    </body>
+</html>

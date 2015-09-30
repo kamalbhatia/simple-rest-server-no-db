@@ -1,0 +1,37 @@
+{
+  "company": "AnyCoGlobal, Inc",
+  "employees": [
+    {
+      "name": "Henry Handsome",
+      "phone": "+1-212-555-1234",
+      "email": "pensive@example.com",
+      "title": "Senior VP of Basketweaving",
+      "fulltime": true,
+      "yearsOfService": 25,
+      "skills" : ["Negotiating", "Shooting the Breeze", "Micro-managing"]
+    }, {
+      "name": "Penelope Persistent",
+      "phone": "+1-212-555-8000",
+      "email": "truthful@example.com",
+      "title": "Principal Understudy",
+      "fulltime": false,
+      "yearsOfService": 10,
+      "skills" : ["Brutal Honesty", "Acting", "Typing", "JavaScript"]      
+    }, {
+      "name": "Sam Serendipity",
+      "phone": "+1-212-555-9876",
+      "email": "helpful@example.com",
+      "title": "Chief Cook and Bottle Washer",
+      "fulltime": true,
+      "yearsOfService": 2
+    }, {
+      "name": "Tom Terrific",
+      "phone": "+1-212-555-0011",
+      "email": "grumpy@example.com",
+      "title": "Janitor",
+      "fulltime": false,
+      "yearsOfService": 5,
+      "skills" : ["Theoretical Physics", "Neurosurgery", "Early Child Development", "C++"]      
+    }
+  ]
+}

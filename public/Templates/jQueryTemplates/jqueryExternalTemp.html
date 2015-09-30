@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>jQuery Teamplates only for simple templating!</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">    </script>
+    <script src="../js/jquery.loadTemplate-1.5.0.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/main.css">
+    <script type="text/javascript">
+        $("document").ready(function(){
+                            //Define the formatter 
+                            $.addTemplateFormatter("UpperCaseFormatter", function(value, options) {
+                            return value.toUpperCase();
+                           });
+            
+                            // load the template from the external file.    
+                           $("#containerId").loadTemplate("template.html", [{
+                           "name" : "Henry Handsome",
+                           "phone" : "+1-212-555-1234",
+                           "email" : "pensive@example.com",
+                           "title" : "Senior VP of Basketweaving",
+                           "fulltime" : true
+                           }, {
+                           "name" : "Penelope Persistent",
+                           "phone" : "+1-212-555-8000",
+                           "email" : "truthful@example.com",
+                           "title" : "Principal Understudy",
+                           "fulltime" : false
+                            }, {
+                           "name" : "Sam Serendipity",
+                           "phone" : "+1-212-555-9876",
+                           "email" : "helpful@example.com",
+                           "title" : "Chief Cook and Bottle Washer",
+                           "fulltime" : true
+                            }, {
+                           "name" : "Tom Terriffic",
+                           "phone" : "+1-212-555-0011",
+                           "email" : "grumpy@example.com",
+                           "title" : "Janitor",
+                           "fulltime" : false
+                           }], {
+                           isFile : true
+                          });
+                });// end of ready function
+                            
+       
+
+           
+         
+        
+      </script>
+      
+    </head>
+    <body>
+        
+       <h1>External Templates with jQuery Template</h1>
+       <h3>This example loads an external template form a HTML file</h3>
+       <!-- This is the container where the templates will be instantiated -->
+       <div id = "containerId">
+           <!-- rendered templates will go here -->
+      
+       </div>
+    </body>
+    
+</html>
