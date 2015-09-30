@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>First Form Request to server</title>
+  </head>
+
+  <body>
+      
+    <ul class="tweets">
+      <script id="template" type="text/x-handlebars-template">
+         <li>
+             <h2>{{author}}</h2>
+             <p>{{tweet}}</p>
+         </li>
+      </script>
+    </ul>
+      
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">           </script>
+    <script src="js/handlebars-v4.0.2.js"></script>
+      
+      <script>
+        // using self-executing function and not using doc.ready cz we dont have to use it when we are loading the scripts in the end of the page.
+        (function(){
+            var data = {
+                author: 'Jeffrey Way',
+                tweet: '30 Days to Learn jQuery Rocks'
+            };
+            
+            var template = Handlebars.compile($('#template').html());
+            
+            var temp = template(data);
+            console.log(temp);
+        })();
+      
+      
+      </script>
+  </body>
+</html>

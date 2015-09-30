@@ -45,13 +45,25 @@ $(document).ready(function(e) {
       var saveDataOnServer = function(e){
         e.preventDefault();
         //validate the item form not working
-        $('#item-form').validate({
+        /*$('#item-form').validate({
              rules: {
                 itemName: "required",
                 itemDescription: "required",
                 itemPrice: "required"
              }
-        });
+        });*/
+          function validateF(){
+              var inputs = itemForm.find('input');
+              if(inputs[0].attr(name) == "notValid" ){
+                  switch(notValid){
+                      case "": 
+                        break;
+                      case  
+                  }
+                  console.log("Please enter Name");
+              }
+          }
+          validateF();
         
         var inputs = itemForm.find('input');
         console.log(inputs);
