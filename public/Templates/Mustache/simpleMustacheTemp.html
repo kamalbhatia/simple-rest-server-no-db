@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple jQuery Template Example</title>
+        <script type="text/javascript" src="../js/jquery-1.5.0.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/mustache.js"></script>
+        <script type="text/javascript">
+         $("document").ready(function() {
+            var template = $("#itemTemplate").html();
+            
+             var result = Mustache.render(template, {
+                "item" : "fSociety White Mountain Data",
+                "description" : "Its Invaluable but we are still selling because Mr. Robot asked us to!",
+                "price" : 10000000000,
+                "inStock" : true,
+                "quantity" : 100
+            } );
+             
+             $("#container").html(result);
+         });// end of ready function
+        </script>
+    </head>
+    
+    <body>
+        <script type="text/template" id="itemTemplate">
+            <div class="itemTemplateWrapper">
+                <div><span>Item: </span><span>{{item}}</span></div>
+                <div><span>Description: </span><span>{{description}}</span></div>
+                <div><span>Price: </span><span>{{price}}</span></div>
+            </div>
+        </script>
+        <h1>Simple Templates with Mustache JS</h1>
+        <h3>This example embeds the template directly in the source HTML</h3>
+
+        <!-- This is the container where the templates will be instantiated -->
+        <div id="container"></div>
+    </body>
+</html>
