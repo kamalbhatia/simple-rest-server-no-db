@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Template Binding Attributes Example</title>
+        <link rel="stylesheet" href="../css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">    </script>
+        <script type="text/javascript" src="../js/jquery.loadTemplate-1.5.0.js"></script>
+        <script type="text/javascript">
+        // When making multiple calls to loadTemplate(), using the append or prepend options
+        // can add content to the template container instead of completely replacing it
+         function renderTemplates() {
+                        // Binding Attributes 
+            $("#container").loadTemplate($("#itemTemplate"), {
+                "name" : "John Doe",
+                "hometown" : "Anywhere, US"
+              }, 
+              {append: true, beforeInsert: onBefore, afterInsert: onAfter, complete: onComplete});
+            $("#container").loadTemplate($("#itemTemplate"), {
+                "name" : "Jane Doe",
+                "hometown" : "Anytown, US"
+              }, 
+              {append: true, beforeInsert: onBefore, afterInsert: onAfter, complete: onComplete});
+            $("#container").loadTemplate($("#itemTemplate"), {
+                "name" : "John Q Public",
+                "hometown" : "Pleasantville, US"
+              }, 
+              {append: true, beforeInsert: onBefore, afterInsert: onAfter, complete: onComplete});
+
+         function onBefore(data) {
+          console.log("Content about to be inserted: " + data);
+         }
+         function onAfter(data) {
+          console.log("Content has been inserted: " + data);
+         }
+         function onComplete() {
+          console.log("Operation complete");
+         }
+             
+         }//end of function renderTemplates
+            
+        window.addEventListener("load", function(e) {
+             renderTemplates();
+         });
+       </script>
+    </head>
+    
+    <body>
+       <script type="text/html" id="itemTemplate">
+            <div class="itemTemplateWrapper">
+                <div data-content="name"></div>
+                <div data-content="hometown"></div>
+            </div>
+        </script>
+        <h1>Using jQuery Template Data Paging</h1>
+        <h3>This example uses the Paging and Binding Attributes features</h3>
+
+        <!-- This is the container where the templates will be instantiated -->
+        <div id="container"></div>
+
+        <button id="prevPage">Previous</button>
+        <button id="nextPage">Next</button>
+    </body>
+</html>
