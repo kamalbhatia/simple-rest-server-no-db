@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mustache Template Example using Functions</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/mustache.js"></script>
+        <script type="text/javascript">
+         $("document").ready(function() {
+            var template = $("#itemTemplate").html();
+            var prodData = {
+                "items" : [
+                    { name: "product 1", price: 125.00 },
+                    { name: "product 2", price: 89.00 },
+                    { name: "product 3", price: 209.00 },
+                    { name: "product 4", price: 415.00 }
+                ]
+            };
+            // define the function
+            prodData.total = function() {
+                return Math.round((this.price * 1.08) * 100) / 100;
+            };
+             
+             // using function that will be used as section around span tag and will be invoked as a function 
+             prodData.decorate = function () {
+	            return function(text, render) {
+	            		return "<u>" + render(text) + "</u>";
+	            };
+            };
+             
+            var result = Mustache.render(template, prodData );
+            $("#container").html(result);
+         });
+        </script>
+    </head>
+    <body>
+        <script type="text/template" id="itemTemplate">
+            <div class="itemTemplateWrapper">
+                {{#items}}
+                <div><span>Item: </span>{{#decorate}}<span>{{name}}</span>{{/decorate}}</div>
+                <div><span>Price: </span><span>{{total}}</span></div>
+                {{/items}}
+            </div>
+        </script>
+        <h1>Functions in Templates with Mustache JS</h1>
+        <h3>This example uses a function to calculate data on the fly</h3>
+
+        <!-- This is the container where the templates will be instantiated -->
+        <div id="container"></div>
+    </body>
+</html>
