@@ -1,0 +1,43 @@
+<!-- Precompile Templates:
+    1. used to increase Performance.
+    2. as Templates are compiled to JS ahead of time.(don't have to call handlbars.compile
+    3. requires node.js
+    4. use node package manager to install handlebars by executing the following command:
+        npm install -g handlebars
+    5. handlebars <inputfile> -f <outputfile>
+  ***inputfile is the file that contains the template and outputfile is the file name that 
+    you wanna keep for the resulting JS code. ***
+  *** that filename i.e outputfile will then become the name of template in the handlebars namespace
+==========================================================================================-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Precompiled Handlebars Template Example</title>
+        <link rel="stylesheet" href="../css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/handlebars.runtime-v4.0.2.js"></script>
+        <script type="text/javascript" src="precomp.js"></script>
+        <script type="text/javascript">
+         $("document").ready(function() {
+           // When the template is compiled it is added to Handlebars.templates
+            var renderer = Handlebars.templates["precomp"];
+            // call the compiled function with the template data
+            var result = renderer({
+                "item" : "Whisper 4000 in-home heater and dog walker",
+                "description" : "Walk your dog and heat your house at the same time? Now you can, with the Whisper 4000 Home Heating system / Dog Treadmill!",
+                "price" : 895.99,
+                "inStock" : true,
+                "quantity" : 100
+            });
+            
+            $("#container").html(result);
+         });
+        </script>
+    </head>
+    <body>
+        <h1>Precompiled Templates with Handlebars JS</h1>
+
+        <!-- This is the container where the templates will be instantiated -->
+        <div id="container"></div>
+    </body>
+</html>

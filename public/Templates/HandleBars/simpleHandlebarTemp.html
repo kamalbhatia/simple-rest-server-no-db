@@ -1,0 +1,49 @@
+<!-- STEP 1: Get the template content,ex we can use innerHTML like:
+       var tlContent = document.getElementById("#templateId").innerHTML;
+    STEP 2: Render the Template Using compile function which returns a fucntion,so renderer is a function
+        var renderer = Handlebars.compile(tlContent);
+    STEP 3: Use that rendering function to populate the template with the data
+        var result = renderer(dataObj);
+Now we can use the fully populated result to put it in the document 
+===================================================================== -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Handlebars Template Example</title>
+        <link rel="stylesheet" href="../css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/handlebars-v4.0.2.js"></script>
+        <script type="text/javascript">
+         $("document").ready(function() {
+            var template = $("#itemTemplate").html();
+            // Handlebars compiles the template into a callable function
+            var renderer = Handlebars.compile(template);
+
+            // call the compiled function with the template data
+            var result = renderer({
+                "item" : "fSociety White Mountain Data",
+                "description" : "Its Invaluable but we are still selling because Mr. Robot asked us to!",
+                "price" : 895.99,
+                "inStock" : true,
+                "quantity" : 100
+            });
+            $("#container").html(result);
+         });
+        </script>
+    </head>
+    <body>
+        <script type="text/x-handlebars-template" id="itemTemplate">
+            <div class="itemTemplateWrapper">
+                <div><span>Item: </span><span>{{item}}</span></div>
+                <div><span>Description: </span><span>{{description}}</span></div>
+                <div><span>Price: </span><span>{{price}}</span></div>
+            </div>
+        </script>
+        <h1>Simple Templates with Handlebars JS</h1>
+        <h3>This example embeds the template directly in the source HTML</h3>
+
+        <!-- This is the container where the templates will be instantiated -->
+        <div id="container"></div>
+    </body>
+</html>

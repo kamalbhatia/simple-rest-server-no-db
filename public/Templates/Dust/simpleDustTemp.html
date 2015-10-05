@@ -1,0 +1,58 @@
+<!-- Steps for Using Dust 
+STEP 1: 
+
+
+
+
+
+
+============================================================= -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Dust Template Example</title>
+        <link rel="stylesheet" href="../css/main.css">
+        <script type="text/javascript" src="../js/dust-full.js"></script>
+        <script type="text/javascript">
+         function renderTemplates(e) {
+            // this gives us a compiled template registered with Dust as "myTmpl"
+            var templContent = document.getElementById('itemTemplate').innerHTML;
+            var dataTemplate = dust.compile(templContent, "myTmpl");
+
+            // load the template into the Dust cache
+            dust.loadSource(dataTemplate);
+
+            
+            var dataObj = {
+               "name" : "Henry Handsome",
+               "phone" : "+1-212-555-1234",
+               "email" : "pensive@example.com",
+               "title" : "Senior VP of Basketweaving",
+               "fulltime" : true
+            };
+            dust.render("myTmpl", dataObj, function (err, result) {
+              document.getElementById('container').innerHTML = result;
+            });
+         }// end of render templates function
+
+         window.addEventListener("load", renderTemplates);
+        </script>
+    </head>
+    <body>
+        
+        
+        <script type="text/x-template" id="itemTemplate">
+            <div class="itemTemplateWrapper">
+              <div>{name}</div>
+              <div>{title}</div>
+              <div>{email}</div>
+              <div>{phone}</div>
+            </div>
+        </script>
+        <h1>Simple Template with Dust.js</h1>
+        <h3>This example embeds the template directly in the source HTML</h3>
+
+        <!-- This is the container where the templates will be instantiated -->
+        <div id="container"></div>
+    </body>
+</html>

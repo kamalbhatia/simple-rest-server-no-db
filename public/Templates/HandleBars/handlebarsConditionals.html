@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Handlebars Conditionals and Loops Template Example</title>
+        <link rel="stylesheet" href="../css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/handlebars-v4.0.2.js"></script>
+        <script type="text/javascript">
+         $("document").ready(function() {
+            var template = $("#itemTemplate").html();
+            // Handlebars compiles the template into a callable function
+            var renderer = Handlebars.compile(template);
+            // call the compiled function with the template data
+            var result = renderer({
+               "employees" : [{
+                  "name" : "Henry Handsome",
+                  "phone" : "+1-212-555-1234",
+                  "email" : "pensive@example.com",
+                  "title" : "Senior VP of Basketweaving",
+                  "fulltime" : true
+               }, {
+                  "name" : "Penelope Persistent",
+                  "phone" : "+1-212-555-8000",
+                  "email" : "truthful@example.com",
+                  "title" : "Principal Understudy",
+                  "fulltime" : false
+               }, {
+                  "name" : "Sam Serendipity",
+                  "phone" : "+1-212-555-9876",
+                  "email" : "helpful@example.com",
+                  "title" : "Chief Cook and Bottle Washer",
+                  "fulltime" : true
+               }, {
+                  "name" : "Tom Terriffic",
+                  "phone" : "+1-212-555-0011",
+                  "email" : "grumpy@example.com",
+                  "title" : "Janitor",
+                  "fulltime" : false
+               }]});
+            
+            $("#container").html(result);
+         });
+        </script>
+    </head>
+    <body>
+        <script type="text/x-handlebars-template" id="itemTemplate">
+            {{#each employees}}
+            <div class="itemTemplateWrapper">
+                {{! This is a handlebars comment and it is totally ignored }}
+                <div>{{name}}</div>
+                <div>{{title}}</div>
+                <div>{{email}}</div>
+                <div>{{phone}}</div>
+                {{#if fulltime}}
+                    <div>Full-time employee</div>
+                {{else}}
+                    <div>Part-time employee</div>
+                {{/if}}
+
+            </div>
+            {{/each}}
+        </script>
+        <h1>Conditionals and Loops in Templates with Handlebars JS</h1>
+        <h3>Handlebars has support for basic logic built in.</h3>
+
+        <!-- This is the container where the templates will be instantiated -->
+        <div id="container"></div>
+    </body>
+</html>

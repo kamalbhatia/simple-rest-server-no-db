@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Using Dust Helpers</title>
+        <link rel="stylesheet" href="../css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/dust-full.js"></script>
+        <script type="text/javascript" src="../js/dust-helpers.js"></script>
+        <script type="text/javascript">
+         function renderTemplates(e) {
+            $.getJSON("templateData.json", function(data) {
+              // this gives us a compiled template registered with Dust as "myTmpl"
+              var templContent = document.getElementById('itemTemplate').innerHTML;
+              var dataTemplate = dust.compile(templContent, "myTmpl");
+
+              // load the template into the Dust cache
+              dust.loadSource(dataTemplate);
+
+              dust.render("myTmpl", data, function (err, res) {
+                document.getElementById('container').innerHTML = res;
+              });
+            });
+         }
+
+         window.addEventListener("load", renderTemplates);
+        </script>
+    </head>
+    <body>
+        <!-- script tag to hold the contents of the template -->
+         <script type="text/x-template" id="itemTemplate">
+          {#employees}
+            <div class="itemTemplateWrapper">
+              <div>{@math key="{$idx}" method="add" operand="1"/} of {$len}: {name}</div>
+              <div>{title}</div>
+              <div>{email}</div>
+              <div>{phone}</div>
+               {@select key="{fulltime}"}
+                {@eq value="true"}
+                  <div>Full-time employee</div>
+                {:else}
+                  <div>Part-time employee</div>
+                {/eq}
+              {/select}
+              <div> 
+              {#skills}
+              <span>{.}{@sep}, {/sep}</span>
+              {/skills}
+              </div>
+            </div>
+          {/employees}
+        </script>
+        
+        <h1>Helpers with Dust.js</h1>
+
+        <!-- This is the container where the templates will be instantiated -->
+        <div id="container"></div>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dust Sections with Paths and Context</title>
+        <link rel="stylesheet" href="../css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/dust-full.js"></script>
+        <script type="text/javascript">
+         function renderTemplates(e) {
+            // this gives us a compiled template registered with Dust as "myTmpl"
+            var templContent = document.getElementById('itemTemplate').innerHTML;
+            var dataTemplate = dust.compile(templContent, "myTmpl");
+    
+            // load the template into the Dust cache
+            dust.loadSource(dataTemplate);
+
+            var dataObj = {
+              "employee": {
+                "name" : "Henry Handsome",
+                "phone" : "+1-212-555-1234",
+                "email" : "pensive@example.com",
+                "title" : "Senior VP of Basketweaving",
+                "fulltime" : true,
+                "department" : {
+                  "name" : "Engineering",
+                  "cost_center" : 90125
+                 }
+               }
+            };
+    
+            dust.render("myTmpl", dataObj, function (err, res) {
+              document.getElementById('container').innerHTML = res;
+            });
+         }
+
+         window.addEventListener("load", renderTemplates);
+        </script>
+    </head>
+    <body>
+        <script type="text/x-template" id="itemTemplate">
+          {#employee}
+            <div class="itemTemplateWrapper">
+              <div>{name}</div>
+                 {#employee.department}
+                    <div>{name}</div>
+                    <div>{cost_center}</div>
+                 {/employee.department}
+              <div>{title}</div>
+              <div>{email}</div>
+              <div>{phone}</div>
+            </div>
+          {/employee}
+        </script>
+
+        <h1>Sections With Context in Templates with Dust.js</h1>
+
+        <!-- This is the container where the templates will be instantiated -->
+        <div id="container"></div>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dust Template Example with Sections</title>
+        <link rel="stylesheet" href="../css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/dust-full.js"></script>
+        <script type="text/javascript">
+         function renderTemplates(e) {
+            $.getJSON("templateData.json", function(data) {
+              // this gives us a compiled template registered with Dust as "myTmpl"
+              var templContent = document.getElementById('itemTemplate').innerHTML;
+              var dataTemplate = dust.compile(templContent, "myTmpl");
+
+              // load the template into the Dust cache
+              dust.loadSource(dataTemplate);
+
+              dust.render("myTmpl", data, function (err, res) {
+                document.getElementById('container').innerHTML = res;
+              });
+            });
+         }
+
+         window.addEventListener("load", renderTemplates);
+        </script>
+    </head>
+    <body>
+        <script type="text/x-template" id="itemTemplate">
+          <div>{company} Employees:</div>
+          {#employees prefix="Name"}
+            <div class="itemTemplateWrapper">
+              <div>{prefix}: {name}</div>
+              <div>{title}</div>
+              <div>{email}</div>
+              <div>{phone}</div>
+            </div>
+            {:else}
+            <div>There are no employees</div>
+          {/employees}
+        </script>
+        <h1>Sections in Templates with Dust.js</h1>
+
+        <!-- This is the container where the templates will be instantiated -->
+        <div id="container"></div>
+    </body>
+</html>
