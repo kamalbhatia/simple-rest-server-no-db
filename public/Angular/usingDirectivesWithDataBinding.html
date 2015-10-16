@@ -1,0 +1,19 @@
+<!-- Using Directoves and Data Binding.
+    anything starting with ng- is an angular directive and ng-app is the most imp one.-->
+<!DOCTYPE html>
+<html data-ng-app=""><!-- can also use just ng-app -->
+    <head>
+      <title>Using AngularJS Directoves and Data Binding</title>
+      <script src="Scripts/jquery.min.js"></script>
+      <script src="Scripts/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+      <div class="container">
+         Name: <br />
+         <input type="text" data-ng-model="name" /> {{ name }}
+      </div>
+      
+      <script src="Scripts/angular.min.js"></script>
+  </body>
+</html>

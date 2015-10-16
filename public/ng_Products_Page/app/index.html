@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bootsrap Project 1 - Online Store</title>
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular/angular-route.min.js"></script>
+  <script src="lib/angular/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+  <script src="lib/angular/angular-messages.js"></script>
+  <script src="lib/angular/angular-resource.js"></script>
+  <script src="js/ProductsData.json"></script>
+  <script src="js/factories.js"></script>
+  <script src="js/controllers.js"></script>
+<script src="js/app.js"></script>
+</head>
+
+<body ng-app="myApp">
+  <!-- Fixes Navigation Bar with drop down Menu
+  ================================================-->
+  
+  <div class="navbar navbar-inverse navbar-fixed-top">
+     <div class="container">
+        <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+           </button> 
+           <a href="#" class="navbar-brand">Store</a>
+        </div>
+         
+        <div class="navbar-collapse collapse">
+           <ul class=" nav navbar-nav">
+              <li class="active"><a href="#/">Home <span class="sr-only">(current)</span></a></li>
+              <li><a href="#/About">About</a></li>
+              <li><a href="#/Catalog">Catalog</a></li>
+              <li><a href="#/Contact">Contact</a></li>
+           </ul>
+        </div>
+     </div>  
+  </div><!-- /navigation -->
+    
+  <!--  Main Content 2-column Layout -->
+  <div class="container">
+     <div class="row">
+        <! -- column 1 of size md-3 -->
+        <div class="col-md-3"><br/><br/><br/><br/>
+           <div class="container">
+                <div class="col-sm-2 list-group">
+                    <a href="#" class="list-group-item active">Bootstrap Tutorials</a>
+                    <a href="#" class="list-group-item">PHP Tuts</a></li>
+                    <a href="#" class="list-group-item">Java Tuts</a></li>
+                    <a href="#" class="list-group-item">CSS Tuts</a></li>
+              </div>
+            </div>
+       <div class="views" ng-view="">
+        
+       </div>
+ </div><!-- /column 1 of size md-3 -->
+         
+        <! -- column 2 of size md-8 -->
+        <div class="col-md-8" id="column2" ng-controller="ListController"><br/><br/><br/><br/>
+            <form class="form-inline" role="form" name="searchForm">
+               <div class="form-group">
+                  <label for="search" class="control-label"> Search</label> &nbsp;&nbsp;
+                  <div class="form-group">
+                    <input type="search" class="form-control" placeholder=" Search by item name..."
+                           ng-model="query" autofocus />
+                  </div>
+               </div>
+            </form>
+            <br>
+            <form class="form-inline" role="form" id="item-form" name="itemForm" novalidate>
+                  <! -- ng-submit="saveElement(myApp.itemForm)"--> 
+                   <label for="itemName" class="control-label">Add Item</label>
+                
+                 <div class="form-group" ng-class="{ 'has-error': itemName.$touched && itemName.$invalid }">
+                   <input 
+                        type="text" 
+                        class="form-control"
+                        placeholder="Item Name*"
+                        name="name" 
+                        ng-minlength="5"
+                        ng-maxlength="10"
+                        required 
+                        ng-model="myApp.itemForm.name"
+                        ng-model-options="{updateOn: 'default blur mousedown'}"
+                        />
+                     <div class="help-block" ng-messages="itemName.$error" 
+                          ng-if="itemName.$touched">
+                            <div ng-messages-include="messages.html"></div>
+                     </div>
+                  </div>
+           
+                <div class="form-group" ng-class="{ 'has-error': myApp.itemForm.description.$touched && myApp.itemForm.description.$invalid }">
+                   <input 
+                        type="text" 
+                        class="form-control"
+                        placeholder="Description*"
+                        name="description"
+                        ng-model="myApp.itemForm.description"
+                        ng-minlength="5"
+                        ng-maxlength="10"
+                        required
+                        ng-model-options="{updateOn: 'default blur mousedown'}"  
+                        />
+                     <div class="help-block" ng-messages="myApp.itemForm.description.$error" ng-if="myApp.itemForm.description.$touched">
+                            <div ng-messages-include="messages.html"></div>
+                     </div>
+                </div>
+                
+                <div class="form-group" ng-class="{ 'has-error': myApp.itemForm.itemPrice.$touched && myApp.itemForm.itemPrice.$invalid }">
+                   <input 
+                        type="number"
+                        class="form-control"
+                        placeholder="Price*"
+                        name="price"
+                        ng-model="myApp.itemForm.price"
+                        ng-minlength="1"
+                        ng-maxlength="6"
+                        ng-pattern="/\d/"
+                        ng-model-options="{updateOn: 'default blur mousedown'}"
+                        required/>
+                     <div class="help-block" ng-messages="myApp.itemForm.itemPrice.$error" 
+                          ng-if="myApp.itemForm.itemPrice.$touched">
+                            <div ng-messages-include="messages.html"></div>
+                     </div>
+                      <span class="help-block" ng-show="myApp.itemForm.itemPrice.$error.required || myApp.itemForm.itemPrice.$error.number" ng-if="myApp.itemForm.itemPrice.$touched && myApp.itemForm.itemPrice.$invalid">Valid Price is Required</span>
+                </div>
+                
+                 <button
+                        type="submit"
+                        class="btn btn-primary form-control" 
+                        ng-click="saveElement(myApp.itemForm,itemForm)">
+                 Add</button>
+           </form>
+           <br/>
+    
+         <!-- concept of wells /Template will come here-->
+           <section class="listSection">
+              <ul>
+               <li ng-repeat="product in products |filter: query">
+                 <div class="well well-sm col-md-12">
+                   <div class="col-md-9">
+                      <h2>{{ product.name }}</h2>
+                      <p>{{ product.description }}</p>
+                   </div><br/>
+             
+                   <div class="col-md-3">
+                      <button type="button" class="btn btn-default btn-primary col-md-6">{{ product.price |currency }}</button> &nbsp;
+                      <button type="button" class="btn btn-default" aria-label="Delete Item">
+                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      </button>
+                   </div>
+                  </div>
+               </li>
+              </ul>
+           </section> 
+        </div><!-- /column 2 of size md-8 -->
+    </div><!--  Main Content 2-column Layout -->
+</div>
+  
+  
+    <!-- Footer and Modal --> 
+
+<div class="container">
+    <div class="row">
+    <hr/>
+       <div class="navbar-fixed-bottom navbar-inverse col-lg-12">
+          <p>Copyright &copy; Soni Project
+            <a data-toggle="modal" href="#myModal">Terms and Conditions</a>
+          </p>
+           
+          <!-- Modal -->
+           <div class="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-hidden="true">
+               <div class="modal-dialog">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                        <h2>Terms and Conditions</h2>
+                     </div>
+                     <div class="modal-body">
+                        <p>The text will go here.......</p>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                     </div>
+                 </div>
+               </div>
+           
+           </div><!-- /Modal -->
+       </div>
+    </div>
+ </div><!-- /Footer and Modal -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="lib/bootstrap/bootstrap.min.js"></script>
+
+</body>
+</html>

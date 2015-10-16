@@ -1,0 +1,110 @@
+<!-- "Routes" are important when we we have to go from 1 view to another and another etc in a single page route.
+Different ways to load views.
+Method1 : 
+View could be embedded as script template in the shell page and then using the templateID i.e view Id.
+Method 2: 
+we can backup these views on the servers (partials) and the we can give the browser template url which is requested from the server.
+// Example of Method 2: 
+var demoApp = angular.module('demoApp',[]);
+
+demoApp.config(function ($routeProvider){
+   $routeProvider
+       .when('/',
+          {
+             controller: 'simpleController';
+             templateUrl: 'View1.HTML'
+          }
+       .when('/partial2',
+          {
+             controller: 'simpleController';
+             templateUrl: 'View2.HTML'
+          }
+        .otherwise({ redirectTo: '/' });
+});
+
+=============================================================--->
+
+<!DOCTYPE html>
+<html data-ng-app="demoApp">
+<head>
+   <title>Using Modules and Controllers</title>
+   <script src="Scripts/jquery.min.js"></script>
+   <script src="Scripts/bootstrap.min.js"></script>
+</head>
+    
+<body>
+ <div>
+     <!-- Place Holder for the views -->
+      <div data-ng-view="">
+      </div>
+ </div>
+  <script src="Scripts/angular.min.js"></script>
+  <script src="Providers/ngRoute.js"></script>
+  <!--<script src="https://www.ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js"></script>-->
+    <script>
+       var demoApp = angular.module('demoApp', ['ngRoute']);
+        
+        demoApp.config(function ($routeProvider){
+        //console.log("I m in config call back function");
+        //console.log($routeProvider); 
+   $routeProvider
+       .when('/view1',
+          {
+             controller: 'simpleController',
+             templateUrl: 'Partials/View1.html'
+          })
+       .when('/view2',
+          {
+             controller: 'simpleController',
+             templateUrl: 'Partials/View2.html'
+          })
+        .otherwise({ redirectTo: '/view1' });
+      });
+        
+        
+        //define a factory ,in the call backback function parameter we can pass $http object to make ajax calls to server to get data, in this case we just taking literal data
+        demoApp.factory('simpleFactory', function(){
+            var customers = [
+                {name: 'John Smith', city: 'NY'},
+                {name: 'John Doe', city: 'San Fran'},
+                {name: 'Jane Doe', city: 'Chicago'}
+            ];
+            var factory = {};
+            factory.getCustomers = function(){
+                return customers;  
+            };
+            
+            factory.postCustomer = function (customer){
+                //name: $scope.newCustomer.name,
+                //city: $scope.newCustomer.city
+            };
+            
+            return factory;
+        });// end of factory
+        
+       
+        var controllers = {};
+       // start of controller 1
+       controllers.simpleController = function($scope, simpleFactory) {
+        $scope.customers = [];
+        // in real-life ,we get data from server  via ajax call etc
+       
+       init();
+       function init() {
+           $scope.customers = simpleFactory.getCustomers();   
+       }
+       
+       $scope.addCustomer = function() {
+            $scope.customers.push(
+                { name: $scope.newCustomer.name,
+                  city: $scope.newCustomer.city
+                });
+       };// end of addCustomer Function
+       
+      };// end of simpleController 1
+        
+        demoApp.controller(controllers);
+    </script>
+</body>
+</html>
+    

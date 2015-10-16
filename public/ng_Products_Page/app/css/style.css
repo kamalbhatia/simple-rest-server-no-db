@@ -1,0 +1,22 @@
+.largeIcon{
+   size: 50px;
+   padding-left: 35px;
+   padding-right: 35px;
+}
+
+a:hover{
+   text-decoration: none;
+}
+
+#mainWellsDiv{
+ height: auto;   
+}
+
+
+.listSection ul{
+ padding: 0;
+ margin: 0;
+}
+.listSection li{
+    list-style-type: none;
+}

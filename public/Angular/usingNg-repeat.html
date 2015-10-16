@@ -1,0 +1,36 @@
+<!-- Using Directoves and Data Binding.
+    anything starting with ng- is an angular directive and ng-app is the most imp one.-->
+
+
+<!DOCTYPE html>
+<html lang="en"><!-- can also use just ng-app -->
+    <head>
+      <title>Using ng-repeat Directive</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>-->
+      <script src="Scripts/jquery.min.js"></script>
+      <script src="Scripts/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+      <div class="container" data-ng-app="" data-ng-init="names=['John Smith','John Doe','Jane Doe']">
+         <div class="row">Name:
+            <div class="col-md-5">
+              <input type="text" data-ng-model="name" /> {{name}}
+            </div>
+         
+            <div class="col-md-5"> 
+              <h3>Looping with the ng-repeat Directive</h3>
+              <ul>
+                <li data-ng-repeat="personName in names">
+                  {{ personName }}
+                </li>
+              </ul>
+            </div>
+         </div><!-- end of row 1 -->
+        </div><!-- end of container -->
+      
+      <script src="Scripts/angular.min.js"></script>
+  </body>
+</html>

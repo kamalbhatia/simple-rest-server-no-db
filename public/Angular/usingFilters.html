@@ -1,0 +1,33 @@
+<!-- Using Fliters -->
+<!DOCTYPE html>
+<html lang="en"><!-- can also use just ng-app -->
+    <head>
+      <title>Using ng-repeat Directive</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>-->
+      <script src="Scripts/jquery.min.js"></script>
+      <script src="Scripts/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+      <div class="container" data-ng-app="" data-ng-init="customers=[{name:'John Smith',city:'NY'},{name:'John Doe',city:'San Fran'},{name:'Jane Doe',city:'Chicago'}]">
+         <div class="row">Name:
+            <div class="col-md-5">
+              <input type="text" data-ng-model="name" />
+            </div>
+         
+            <div class="col-md-5"> 
+              <h3>Looping with the ng-repeat Directive</h3>
+              <ul>
+                <li data-ng-repeat="cust in customers | filter:name | orderBy:'city'">
+                  {{ cust.name | uppercase }} - {{ cust.city | lowercase }}
+                </li>
+              </ul>
+            </div>
+         </div><!-- end of row 1 -->
+        </div><!-- end of container -->
+      
+      <script src="Scripts/angular.min.js"></script>
+  </body>
+</html>
