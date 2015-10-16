@@ -7,7 +7,17 @@ productControllers.controller('ListController', ['$scope','$http','ProductsJsonF
        $scope.products = ProductsJsonFactory.query();
        console.log($scope.products);
      
-    
+       $http.get('/Products/').success(function(data){
+           console.log(data);
+           for(i=0; i < data.length; i++){
+              $scope.products.push({
+                name : data[i].name,
+                description : data[i].description,
+                price : data[i].price
+              });
+            console.log($scope.products);
+           };
+       });
      //function to add the element
     $scope.saveElement = function(list,itemForm){
         console.log("Hi ,it works!");
