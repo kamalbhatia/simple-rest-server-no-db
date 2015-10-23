@@ -41,5 +41,21 @@
         "category": "Chess",
         "price": 1200,
         "uid": "6ff650c49a356a61"
+    },
+    
+    {
+        "name": "TestDelete1",
+        "description": "FIFA approved size and weight",
+        "category": "Soccer",
+        "price": 19.95,
+        "uid": "60d4f82c7f487e"
+    },
+    
+    {
+        "name": "TestDelete2",
+        "description": "FIFA approved size and weight",
+        "category": "Soccer",
+        "price": 19.95,
+        "uid": "60d4f82f41b87e"
     }
 ]

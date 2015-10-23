@@ -74,29 +74,30 @@
                </div>
             </form>
             <br>
-            <form class="form-inline" role="form" id="item-form" name="itemForm" novalidate>
+            <form class="" role="form" id="item-form" name="itemForm" novalidate>
                   <! -- ng-submit="saveElement(myApp.itemForm)"--> 
-                   <label for="itemName" class="control-label">Add Item</label>
                 
-                 <div class="form-group" ng-class="{ 'has-error': itemName.$touched && itemName.$invalid }">
+                 <div class="form-group col-md-7" ng-class="{ 'has-error': itemForm.name.$touched && itemForm.name.$invalid }">
+                   <label for="name" class="control-label">Add Item</label>
                    <input 
                         type="text" 
                         class="form-control"
                         placeholder="Item Name*"
-                        name="name" 
+                        name="name"
+                        width="20"
                         ng-minlength="5"
                         ng-maxlength="10"
-                        required 
                         ng-model="myApp.itemForm.name"
                         ng-model-options="{updateOn: 'default blur mousedown'}"
+                        required 
                         />
-                     <div class="help-block" ng-messages="itemName.$error" 
-                          ng-if="itemName.$touched">
+                     <div class="help-block" ng-messages="itemForm.name.$error" 
+                          ng-if="itemForm.name.$touched">
                             <div ng-messages-include="messages.html"></div>
                      </div>
                   </div>
-           
-                <div class="form-group" ng-class="{ 'has-error': myApp.itemForm.description.$touched && myApp.itemForm.description.$invalid }">
+                
+                <div class="form-group col-md-7" ng-class="{ 'has-error': itemForm.description.$touched && itemForm.description.$invalid }">
                    <input 
                         type="text" 
                         class="form-control"
@@ -105,15 +106,16 @@
                         ng-model="myApp.itemForm.description"
                         ng-minlength="5"
                         ng-maxlength="10"
+                        ng-model-options="{updateOn: 'default blur mousedown'}"
                         required
-                        ng-model-options="{updateOn: 'default blur mousedown'}"  
                         />
-                     <div class="help-block" ng-messages="myApp.itemForm.description.$error" ng-if="myApp.itemForm.description.$touched">
-                            <div ng-messages-include="messages.html"></div>
+                     <div class="help-block" ng-messages="itemForm.description.$error" ng-if="itemForm.description.$touched">
+                            <div ng-messages-include="messages.html" ng-message="required"></div>
                      </div>
                 </div>
                 
-                <div class="form-group" ng-class="{ 'has-error': myApp.itemForm.itemPrice.$touched && myApp.itemForm.itemPrice.$invalid }">
+                
+                <div class="form-group col-md-7" ng-class="{ 'has-error': itemForm.price.$touched && itemForm.price.$invalid }">
                    <input 
                         type="number"
                         class="form-control"
@@ -124,36 +126,37 @@
                         ng-maxlength="6"
                         ng-pattern="/\d/"
                         ng-model-options="{updateOn: 'default blur mousedown'}"
-                        required/>
-                     <div class="help-block" ng-messages="myApp.itemForm.itemPrice.$error" 
-                          ng-if="myApp.itemForm.itemPrice.$touched">
+                        required
+                       />
+                     <div class="help-block" ng-messages="itemForm.price.$error" 
+                          ng-if="itemForm.price.$touched">
                             <div ng-messages-include="messages.html"></div>
                      </div>
-                      <span class="help-block" ng-show="myApp.itemForm.itemPrice.$error.required || myApp.itemForm.itemPrice.$error.number" ng-if="myApp.itemForm.itemPrice.$touched && myApp.itemForm.itemPrice.$invalid">Valid Price is Required</span>
+                      <span class="help-block" ng-show="itemForm.price.$error.required || itemForm.price.$error.number" ng-if="itemForm.price.$touched && itemForm.price.$invalid">Valid Price is Required</span>
                 </div>
                 
-                 <button
+                 <button 
                         type="submit"
-                        class="btn btn-primary form-control" 
+                        class="btn btn-primary form-control col-md-3" 
                         ng-click="saveElement(myApp.itemForm,itemForm)">
                  Add</button>
            </form>
-           <br/>
+           <br/><br />
     
          <!-- concept of wells /Template will come here-->
            <section class="listSection">
               <ul>
                <li ng-repeat="product in products |filter: query">
                  <div class="well well-sm col-md-12">
-                   <div class="col-md-9">
+                   <div class="col-md-8">
                       <h2>{{ product.name }}</h2>
                       <p>{{ product.description }}</p>
                    </div><br/>
              
-                   <div class="col-md-3">
+                   <div class="col-md-4">
                       <button type="button" class="btn btn-default btn-primary col-md-6">{{ product.price |currency }}</button> &nbsp;
                       <button type="button" class="btn btn-default" aria-label="Delete Item">
-                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                          <span class="glyphicon glyphicon-remove pull-right close" aria-hidden="true" ng-model="myApp.itemForm.id" data-ng-click="deleteElement(product.id)">{{product.id}}</span>
                       </button>
                    </div>
                   </div>
@@ -171,7 +174,7 @@
     <div class="row">
     <hr/>
        <div class="navbar-fixed-bottom navbar-inverse col-lg-12">
-          <p>Copyright &copy; Soni Project
+          <p align="center" style="color:white">Copyright &copy; Soni Project
             <a data-toggle="modal" href="#myModal">Terms and Conditions</a>
           </p>
            
@@ -197,6 +200,7 @@
  </div><!-- /Footer and Modal -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="lib/bootstrap/bootstrap.min.js"></script>
+<link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
 
 </body>
 </html>

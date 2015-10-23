@@ -30,8 +30,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
-myApp.config(['$resourceProvider', function($resourceProvider) {
+//myApp.config(['$resourceProvider', function($resourceProvider) {
   // Don't strip trailing slashes from calculated URLs
-  $resourceProvider.defaults.stripTrailingSlashes = false;
-}]);
+ // $resourceProvider.defaults.stripTrailingSlashes = false;
+//}]);
 
